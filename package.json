@@ -2,8 +2,9 @@
   "name": "rythm-game",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "index.html",
   "scripts": {
+    "build": "parcel build --public-url https://gringrape.github.io/rythm-game",
     "start": "parcel ./index.html",
     "test": "jest",
     "watch": "npm test -- --watchAll"
