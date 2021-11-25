@@ -1,6 +1,9 @@
 import * as PIXI from 'pixi.js';
 import { sound } from '@pixi/sound';
 
+// TODO: delete this
+console.log('what!!!?');
+
 const APP_SIZE = {
   width: 640,
   height: 360,
@@ -54,9 +57,10 @@ const bottomLine = new PIXI.Graphics()
   .endFill();
 app.stage.addChildAt(bottomLine);
 
-const miSound = sound.add('mi', '/mi_sound.mp3');
-const reSound = sound.add('re', '/re_sound.mp3');
-const doSound = sound.add('do', '/do_sound.mp3');
+// Fix path
+const miSound = sound.add('mi', '/rythm-game/mi_sound.mp3');
+const reSound = sound.add('re', '/rythm-game/re_sound.mp3');
+const doSound = sound.add('do', '/rythm-game/do_sound.mp3');
 
 function intersect(figure) {
   return LINE_POSITION_Y > figure.y && LINE_POSITION_Y < figure.y + TRIANGLE_LENGTH;
