@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { sound } from '@pixi/sound';
 
 const APP_SIZE = {
   width: 640,
@@ -17,20 +18,23 @@ const TRIANGLE_LENGTH = 60;
 const downTriangle = new PIXI.Graphics()
   .beginFill(0xff00ff)
   .lineStyle(1, 0xff00ff)
-  .lineTo(TRIANGLE_LENGTH, 0)
-  .lineTo(TRIANGLE_LENGTH / 2, TRIANGLE_LENGTH)
-  .lineTo(0, 0)
+  .moveTo(APP_SIZE.width / 2 - TRIANGLE_LENGTH / 2, 0)
+  .lineTo(APP_SIZE.width / 2 + TRIANGLE_LENGTH / 2, 0)
+  .lineTo(APP_SIZE.width / 2, TRIANGLE_LENGTH)
+  .lineTo(APP_SIZE.width / 2 - TRIANGLE_LENGTH / 2, 0)
   .endFill();
 app.stage.addChild(downTriangle);
 
 const LINE_POSITION_Y = APP_SIZE.height * 0.7;
 const bottomLine = new PIXI.Graphics()
   .beginFill(0x00ffff)
-  .lineStyle(2, 0x00ffff)
+  .lineStyle(5, 0x00ffff)
   .moveTo(0, LINE_POSITION_Y)
   .lineTo(APP_SIZE.width, LINE_POSITION_Y)
   .endFill();
 app.stage.addChildAt(bottomLine);
+
+const miSound = sound.add('bgm', '/mi_sound.mp3');
 
 function intersect() {
   return LINE_POSITION_Y > downTriangle.y && LINE_POSITION_Y < downTriangle.y + TRIANGLE_LENGTH;
@@ -38,6 +42,10 @@ function intersect() {
 
 window.addEventListener('keydown', (e) => {
   const { key } = e;
+
+  if (key === 'ArrowDown') {
+    miSound.play();
+  }
 
   if (key === 'ArrowDown' && intersect()) {
     app.stage.removeChild(downTriangle);
